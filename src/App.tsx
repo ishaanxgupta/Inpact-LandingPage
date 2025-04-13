@@ -12,7 +12,22 @@ import Header from './components/Header';
 
 
 function App() {
+  const headingWords = ['Creator', 'Collaboration', 'Hub'];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+  
+  const wordVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0 },
+  };
   return (
     <div className="min-h-screen bg-black text-white">
             <Header/>
@@ -27,12 +42,27 @@ function App() {
           color = {[147, 0, 60]}
         />
         </div>
-          <div className='top-1/2 left-1/2 transform -translate-x-1/2 absolute text-white text-center text-6xl font-bold '>
-             Creator Collaboration Hub
-          </div>
-          <p className="text-xl top-2/3 left-1/2 transform -translate-x-1/2 absolute text-gray-300 text-center ">
-              The future of creator collaboration is coming. Join the waitlist to be the first to experience the revolution in influencer marketing.
-            </p>
+        <motion.div
+  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-wrap justify-center gap-3 text-white text-6xl font-bold text-center"
+  variants={containerVariants}
+  initial="hidden"
+  animate="show"
+>
+  {headingWords.map((word, index) => (
+    <motion.span
+      key={index}
+      variants={wordVariants}
+    >
+      {word}
+    </motion.span>
+  ))}
+</motion.div>
+          <p className="text-xl top-2/3 left-1/2 transform -translate-x-1/2 absolute text-gray-300 text-center">
+  The future of <span className="text-pink-500 font-semibold">creator collaboration</span> is coming. 
+  Join the <span className="text-pink-500 font-semibold">waitlist</span> to be the first to experience 
+  the revolution in <span className="text-pink-500 font-semibold">influencer marketing</span>.
+</p>
+
  
          {/* Features */}
         <div className="grid md:grid-cols-4 gap-8 mt-72 px-4">
