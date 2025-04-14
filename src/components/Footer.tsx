@@ -1,6 +1,4 @@
-import React from 'react';
 import { Box, Typography, Link, Divider } from '@mui/material';
-import Github from './github';
 const Footer = () => {
   return (
     <Box

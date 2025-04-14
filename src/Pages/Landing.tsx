@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Users, Rocket,ArrowRight } from 'lucide-react';
+import { Sparkles, Users } from 'lucide-react';
 import {  DollarSign, FileText, BarChart2, RefreshCw } from 'lucide-react';
 import ChatbotSidebarForm from '../components/form';
 import Footer from '../components/Footer';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Drawer, Button, TextField } from '@mui/material';
 import { motion } from 'framer-motion';
 import SendButton from "../components/sendbutton";
