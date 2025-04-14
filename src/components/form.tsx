@@ -32,6 +32,7 @@ const chatbotSteps = {
   ],
 };
 
+
 export default function ChatbotSidebarForm() {
   const [open, setOpen] = useState(false);
   const [chat, setChat] = useState([{ from: 'bot', text: chatbotSteps.initial.question }]);
@@ -40,6 +41,47 @@ export default function ChatbotSidebarForm() {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
   const [userInput, setUserInput] = useState('');
   const [completed, setCompleted] = useState(false);
+
+  const FORM_ID = '';
+  const formUrl = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
+
+
+  const submitToGoogleForm = async () => {
+  
+    const formBody = new URLSearchParams();
+    formBody.append('entry.1234567890', formData.brandName || formData.creatorName); 
+    formBody.append('entry.2345678901', formData.industry); 
+    formBody.append('entry.3456789012', formData.budget);
+    formBody.append('entry.4567890123', formData.influencerExperience);
+    formBody.append('entry.5678901234', formData.adPlatforms);
+    formBody.append('entry.6789012345', formData.targetAudience);
+    formBody.append('entry.7890123456', formData.campaignDetails);
+    formBody.append('entry.8901234567', formData.creatorName);
+    formBody.append('entry.9012345678', formData.email);
+    formBody.append('entry.0123456789', formData.phone);
+    formBody.append('entry.1234567890', formData.platform);
+    formBody.append('entry.2345678901', formData.socialMedia);
+    formBody.append('entry.3456789012', formData.subscribers);
+    formBody.append('entry.4567890123', formData.followers);
+    formBody.append('entry.5678901234', formData.niche);
+    formBody.append('entry.6789012345', formData.exclusiveDeals);
+    formBody.append('entry.7890123456', formData.portfolio);
+
+  
+    try {
+      await fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody.toString(),
+      });
+      console.log("Submitted to Google Form");
+    } catch (err) {
+      console.error("Failed to submit to Google Form", err);
+    }
+  };
 
   const handleOptionClick = (option: 'Brand' | 'Creator') => {
     setChat((prev) => [...prev, { from: 'user', text: option }]);
@@ -74,6 +116,7 @@ export default function ChatbotSidebarForm() {
           { from: 'bot', text: 'Thanks for joining the waitlist! 🎉' },
         ]);
         setCompleted(true);
+        submitToGoogleForm();
         setTimeout(() => setOpen(false), 2000); // auto close after 2 seconds
       }, 500);
     }
@@ -99,71 +142,80 @@ export default function ChatbotSidebarForm() {
       </div>
 
       <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
-        <div className="w-[350px] p-4 h-screen flex flex-col justify-between bg-[#111827] text-white">
-          <div className="space-y-3 overflow-y-auto max-h-[80vh]">
-            {chat.map((msg, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.05 }}
-                className={`p-2 px-3 rounded-lg max-w-[80%] ${
-                  msg.from === 'bot'
-                    ? 'bg-gray-800 text-left'
-                    : 'bg-[#8B5CF6] ml-auto text-right'
-                }`}
-              >
-                {msg.text}
-              </motion.div>
-            ))}
-          </div>
+  <div className="w-[400px] h-screen flex flex-col bg-[#1F2937] text-white">
+    
+    {/* Header */}
+    <div className="p-4 border-b border-gray-700 text-lg font-semibold tracking-wide">
+      🤖 Automated Chat Form
+    </div>
 
-          <div className="mt-4">
-            {!path ? (
-              <div className="flex gap-2">
-                {chatbotSteps.initial.options.map((opt) => (
-                  <Button
-                    key={opt}
-                    variant="outlined"
-                    onClick={() => handleOptionClick(opt as 'Brand' | 'Creator')}
-                    sx={{
-                      borderColor: '#8B5CF6',
-                      color: '#8B5CF6',
-                      '&:hover': {
-                        backgroundColor: '#8B5CF6',
-                        color: '#fff',
-                      },
-                    }}
-                  >
-                    {opt}
-                  </Button>
-                ))}
-              </div>
-            ) : !completed && stepIndex < chatbotSteps[path].length ? (
-              <div className="flex gap-2">
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                  value={userInput}
-                  onChange={(e) => setUserInput(e.target.value)}
-                  disabled={completed}
-                  sx={{
-                    backgroundColor: 'white',
-                    borderRadius: '8px',
-                  }}
-                />
-                <div
-                  onClick={handleNext}
-                  className='m-0 p-0'
-                >
-                  <SendButton/>
-                </div>
-              </div>
-            ) : null}
+    {/* Chat Body */}
+    <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800">
+      {chat.map((msg, idx) => (
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: idx * 0.05 }}
+          className={`p-3 rounded-xl max-w-[85%] whitespace-pre-wrap break-words ${
+            msg.from === 'bot'
+              ? 'bg-gray-700 text-left'
+              : 'bg-[#8B5CF6] ml-auto text-right'
+          }`}
+        >
+          {msg.text}
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Input Section */}
+    <div className="p-4 border-t border-gray-700">
+      {!path ? (
+        <div className="flex gap-3">
+          {chatbotSteps.initial.options.map((opt) => (
+            <Button
+              key={opt}
+              variant="outlined"
+              onClick={() => handleOptionClick(opt as 'Brand' | 'Creator')}
+              sx={{
+                borderColor: '#8B5CF6',
+                color: '#8B5CF6',
+                fontWeight: 600,
+                '&:hover': {
+                  backgroundColor: '#8B5CF6',
+                  color: '#fff',
+                },
+              }}
+            >
+              {opt}
+            </Button>
+          ))}
+        </div>
+      ) : !completed && stepIndex < chatbotSteps[path].length ? (
+        <div className="flex items-center gap-2">
+          <TextField
+            fullWidth
+            variant="outlined"
+            size="small"
+            value={userInput}
+            onChange={(e) => setUserInput(e.target.value)}
+            disabled={completed}
+            placeholder="Type your answer..."
+            sx={{
+              input: { color: '#000' },
+              backgroundColor: 'white',
+              borderRadius: '8px',
+            }}
+          />
+          <div onClick={handleNext} className="cursor-pointer">
+            <SendButton />
           </div>
         </div>
-      </Drawer>
+      ) : null}
+    </div>
+  </div>
+</Drawer>
+
     </div>
   );
 }

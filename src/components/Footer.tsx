@@ -24,17 +24,23 @@ const Footer = () => {
         </Typography>
 
         <Box display="flex" gap={3} mt={{ xs: 2, md: 0 }}>
-          <Link href="#" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+          <Link href="/" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
             Home
           </Link>
-          <Link href="#" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+          <Link href="/" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
             About
           </Link>
-          <Link href="#" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+          <Link href="/" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
             Contact
           </Link>
-          <Link href="#" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+          <Link href="https://github.com/AOSSIE-Org/InPactAI" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
             Github
+          </Link>
+          <Link href="/terms-of-service" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+            Terms of Use
+          </Link>
+          <Link href="/privacy-policy" underline="none" color="inherit" sx={{ '&:hover': { color: '#8B5CF6' } }}>
+            Privacy Policy
           </Link>
         </Box>
       </Box>
