@@ -1,64 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import {
-    BrainCircuit,
-    Workflow,
-    Database,
-    GitMerge,
-    ArrowRight,
-    Github,
-    Slack,
-    MessageSquare,
-    Users,
-    Shield,
-    Layers,
-    Server,
-    Code,
-    FileCode,
-    BarChart3,
-    ShieldCheck,
-    KeyRound,
-    Brain,
-    BookOpen,
-    FileText,
-    Sparkles,
-    GitBranch,
-    FileBarChart2,
-    TrendingUp,
-    Smile,
-    GraduationCap,
-    Rocket,
-    Code2,
-    LayoutDashboard,
-    Globe,
-    Terminal,
-    User,
-    UserPlus,
-    UserMinus,
-    UserCheck,
     UserIcon,
     SparklesIcon,
     CreditCardIcon,
-    BarChartIcon,
+    BarChartIcon,   
     LayoutDashboardIcon,
     CameraIcon
 
 } from 'lucide-react';
 
 const HowItWorks: React.FC = () => {
-    const [isDesktop, setIsDesktop] = useState(false);
-
-    useEffect(() => {
-        const checkIfDesktop = () => {
-            setIsDesktop(window.innerWidth >= 768);
-        };
-
-        checkIfDesktop();
-
-        window.addEventListener('resize', checkIfDesktop);
-
-        return () => window.removeEventListener('resize', checkIfDesktop);
-    }, []);
 
     const steps = [
         {
