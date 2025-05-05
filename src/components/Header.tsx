@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 import Github from './github';
 
 const Header = () => {
@@ -17,7 +16,7 @@ const Header = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <Sparkles className="w-7 h-7 text-purple-400" />
+          
           <span className="text-2xl font-bold text-white">InpactAI</span>
         </motion.div>
 

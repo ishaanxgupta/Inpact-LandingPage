@@ -6,7 +6,8 @@ import Footer from '../components/Footer';
 import Threads from '../components/bg';
 import  SpotlightCard  from '../components/card';
 import Header from '../components/Header';
-
+import HowItWorks from '../components/howitworks';
+import Integrations from '../components/integration';
 
 
 function Landing() {
@@ -148,15 +149,26 @@ function Landing() {
             </SpotlightCard>
           ))}
         </div>
-       
+
+        {/* How It Works Section */}
+        <section className='mt-32'>
+          <HowItWorks/>
+        </section>
+
+        <section className='mt-32'>
+          <Integrations/>
+        </section>
+
+
         {/* Waitlist Form Section */}
-        <section className="min-h-[60vh] flex flex-col justify-center items-center text-center px-6 py-16 bg-[#0f0f1b] text-white mt-32">
+        <section className="min-h-[60vh] flex flex-col justify-center items-center text-center px-6 py-16 bg-[#0f0f1b] text-white mt-32 rounded-3xl">
       <div className="max-w-xl space-y-6">
-        <h2 className="text-4xl font-bold tracking-tight text-purple-400">
-          Be Part of the Future
+      <h2 className="relative inline-block text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-400">
+            Be a Part of the Revolution
+            <span className="block h-[3px] bg-purple-500 absolute left-1/2 transform -translate-x-1/2 mt-2 w-0 transition-all duration-500 group-hover:w-full"></span>
         </h2>
         <p className="text-lg text-gray-300">
-          Join our waitlist to be the first to experience how inpactAI is transforming the way brands and creators collaborate. 🚀
+          Join our waitlist to be the first to experience how InpactAI is transforming the way brands and creators collaborate. 
         </p>
         <div className="pt-4 ml-44">
           <ChatbotSidebarForm />

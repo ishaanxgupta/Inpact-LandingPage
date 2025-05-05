@@ -18,7 +18,7 @@ const WatchlistButton = () => {
 
 const StyledWrapper = styled.div`
   .cssbuttons-io-button {
-    background: #a370f0;
+    background:rgb(115, 24, 252);
     color: white;
     font-family: inherit;
     padding: 0.35em;
